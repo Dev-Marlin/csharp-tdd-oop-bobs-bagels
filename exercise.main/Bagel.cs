@@ -31,6 +31,18 @@ namespace exercise.main
             }
         }
 
+        public string AllTheFilling()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Filling f in filling)
+            {
+                sb.Append(f.ToString() + "\n");
+            }
+
+            return sb.ToString();
+        }
+
         public double CheckFillingPrice()
         {
             double totalPrice = 0;
@@ -42,5 +54,7 @@ namespace exercise.main
 
             return totalPrice;
         }
+
+
     }
 }

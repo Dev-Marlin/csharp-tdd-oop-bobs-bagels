@@ -22,5 +22,7 @@ namespace exercise.main
             SKU = sku;
             Variant = variant;
         }
+
+        public abstract override string ToString();
     }
 }

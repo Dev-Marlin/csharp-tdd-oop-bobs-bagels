@@ -9,7 +9,7 @@ namespace exercise.main
     {
         private List<Product> products;
         public int Capacity {  get; set; }
-        public bool AddProduct(string SKU)
+        public bool AddProduct(Product p)
         {
             throw new System.NotImplementedException();
         }
@@ -24,5 +24,32 @@ namespace exercise.main
             throw new System.NotImplementedException();
         }
 
+        public string AllProducts()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Product p in products)
+            {
+                sb.Append(p.ToString() + "\n");
+            }
+
+            return sb.ToString();
+        }
+
+        public Product GetProduct(string SKU, out bool exists)
+        {
+            Product temp = null;
+
+            foreach (Product p in products)
+            {
+                if(p.SKU == SKU)
+                {
+                    exists = true;
+                    temp = p; break;
+                }
+            }
+            exists = false;
+            return temp;
+        }
     }
 }
