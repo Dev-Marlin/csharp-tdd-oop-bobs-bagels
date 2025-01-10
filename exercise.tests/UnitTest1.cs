@@ -11,7 +11,7 @@ public class Tests
         Basket basket = new Basket();
         Product a = new Bagel(0.1, "Bagel", "BGLO", "Onion");
         basket.AddProduct(a);
-        Product b = basket.GetProduct("BGLO");
+        Product b = basket.GetProduct("BGLO", out bool exists);
 
         Assert.That(a.SKU, Is.EqualTo(b.SKU));
     }

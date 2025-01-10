@@ -55,6 +55,10 @@ namespace exercise.main
             return totalPrice;
         }
 
+        public override string ToString()
+        {
+            return Variant;
+        }
 
     }
 }

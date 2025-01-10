@@ -9,19 +9,49 @@ namespace exercise.main
     {
         private List<Product> products;
         public int Capacity {  get; set; }
+        int currentAmountOfProducts;
+
+        public Basket()
+        {
+            products = new List<Product>();
+            Capacity = 5;
+            currentAmountOfProducts = 0;
+        }
         public bool AddProduct(Product p)
         {
-            throw new System.NotImplementedException();
+            if(currentAmountOfProducts < Capacity)
+            {
+                products.Add(p);
+                currentAmountOfProducts++;
+                return true;
+            }
+
+            return false;
         }
 
         public bool RemoveProduct(string SKU)
         {
-            throw new System.NotImplementedException();
+            foreach (Product p in products)
+            {
+                if (p.SKU == SKU)
+                {
+                    products.Remove(p);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public double TotalCost()
         {
-            throw new System.NotImplementedException();
+            double totalCost = 0;
+
+            foreach (Product p in products)
+            {
+                totalCost += p.Price;
+            }
+
+            return totalCost;
         }
 
         public string AllProducts()
