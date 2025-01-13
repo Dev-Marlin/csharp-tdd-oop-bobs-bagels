@@ -57,7 +57,7 @@ namespace exercise.main
 
         public override string ToString()
         {
-            return Variant;
+            return Name + " "+ Variant;
         }
 
     }

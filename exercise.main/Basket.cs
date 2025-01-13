@@ -11,11 +11,15 @@ namespace exercise.main
         public int Capacity {  get; set; }
         private int currentAmountOfProducts;
         private double totalCost;
+        private Dictionary<Product, double> ProductPrice;
+        private Dictionary<Product, int> ProductAmount;
 
         public Basket()
         {
+            ProductPrice = new Dictionary<Product, double>();
+            ProductAmount = new Dictionary<Product, int>();
             products = new List<Product>();
-            Capacity = 8;
+            Capacity = 18;
             currentAmountOfProducts = 0;
             totalCost = 0;
         }
@@ -23,10 +27,20 @@ namespace exercise.main
         {
             if(currentAmountOfProducts < Capacity)
             {
-
                 products.Add(p);
                 totalCost += p.Price;
                 currentAmountOfProducts++;
+
+                if (ProductAmount.ContainsKey(p))
+                {
+                    ProductAmount[p]++;
+                }
+                else
+                {
+                    ProductAmount.Add(p, 1);
+                }
+
+                UpdateTotalPriceTest();
                 return true;
             }
 
@@ -42,6 +56,15 @@ namespace exercise.main
                     products.Remove(p);
                     totalCost -= p.Price;
                     currentAmountOfProducts--;
+
+                    if (ProductAmount.ContainsKey(p))
+                    {
+                        ProductAmount[p]--;
+                    }
+
+                    if(ProductAmount[p] == 0)
+                        ProductAmount.Remove(p);
+
                     return true;
                 }
             }
@@ -67,30 +90,13 @@ namespace exercise.main
 
         public string PrintBasket()
         {
-            Dictionary<Product, double> ProductPrice = new Dictionary<Product, double>();
-            Dictionary<Product, int> ProductAmount = new Dictionary<Product, int>();
-
-            foreach(Product p in products)
-            {
-                /*
-                 * CODE FOR PRICES AND APPLYING DISCOUNTS
-                 * */
-
-                if (ProductAmount.ContainsKey(p))
-                {
-                    ProductAmount[p]++;
-                }
-                else
-                {
-                    ProductAmount.Add(p, 1);
-                }
-            }
 
             StringBuilder sb = new StringBuilder();
 
             foreach(KeyValuePair<Product, double> kp in ProductPrice)
             {
-                sb.Append(kp.Key.Variant + "\t" + ProductAmount[kp.Key]+"\t"+ kp.Value + "\n");
+                //sb.Append(kp.Key.Variant + "\t" + ProductAmount[kp.Key]+"\t£"+ kp.Value + "\n");
+                sb.Append(String.Format("{0,12}\t{1,4}\t{2,8}\n", kp.Key.Variant, ProductAmount[kp.Key], "£"+ kp.Value));
             }
 
             return sb.ToString();
@@ -119,6 +125,29 @@ namespace exercise.main
             }
 
             return productTotalPrices;
+        }
+
+        public void UpdateTotalPriceTest()
+        {
+            IDiscount onionBagel = new OnionBagelDiscount();
+
+            ProductPrice = new Dictionary<Product, double>();
+
+            foreach (Product p in products.Distinct())
+            {
+                if (p.SKU == "BGLO" && !ProductPrice.ContainsKey(p))
+                {
+                    ProductPrice.Add(p, onionBagel.CheckDiscount(products));
+                }
+                else if (ProductPrice.ContainsKey(p))
+                {
+                    ProductPrice[p] += p.Price;
+                }
+                else
+                {
+                    ProductPrice.Add(p, p.Price);
+                }
+            }
         }
 
         public Product GetProduct(string SKU, out bool exists)
