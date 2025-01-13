@@ -8,6 +8,6 @@ namespace exercise.main
 {
     internal interface IReceipt
     {
-        public string WriteReceipt(Dictionary<Product, double> productPrices);
+        public string WriteReceipt(string list, string total); //Dictionary<Product, double> productPrices);
     }
 }
