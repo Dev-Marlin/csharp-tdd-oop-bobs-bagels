@@ -9,19 +9,22 @@ namespace exercise.main
     {
         private List<Product> products;
         public int Capacity {  get; set; }
-        int currentAmountOfProducts;
+        private int currentAmountOfProducts;
+        private double totalCost;
 
         public Basket()
         {
             products = new List<Product>();
             Capacity = 5;
             currentAmountOfProducts = 0;
+            totalCost = 0;
         }
         public bool AddProduct(Product p)
         {
             if(currentAmountOfProducts < Capacity)
             {
                 products.Add(p);
+                totalCost += p.Price;
                 currentAmountOfProducts++;
                 return true;
             }
@@ -44,6 +47,7 @@ namespace exercise.main
 
         public double TotalCost()
         {
+            /*
             double totalCost = 0;
 
             foreach (Product p in products)
@@ -51,6 +55,7 @@ namespace exercise.main
                 totalCost += p.Price;
             }
 
+            return totalCost;*/
             return totalCost;
         }
 

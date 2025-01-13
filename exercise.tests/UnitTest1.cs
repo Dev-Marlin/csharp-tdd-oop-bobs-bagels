@@ -143,4 +143,33 @@ public class Tests
         Assert.That(isItIn, Is.False);
     }
 
+    [Test]
+    public void GetDiscountTest()
+    {
+        Basket basket = new Basket();
+
+        for (int i = 1; i < 6; i++)
+        {
+            basket.AddProduct(new Bagel(0.49, "Bagel", "BGLO", "Onion"));
+        }
+
+
+        Assert.That(basket.TotalCost, Is.EqualTo(2.49));
+    }
+
+    [Test]
+    public void NoDiscountTest()
+    {
+        Basket basket = new Basket();
+
+
+        for (int i = 1; i < 5; i++)
+        {
+            basket.AddProduct(new Bagel(0.49, "Bagel", "BGLO", "Onion"));
+        }
+
+
+        Assert.That(basket.TotalCost, Is.EqualTo(0.49*5.0));
+    }
+
 }

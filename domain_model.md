@@ -20,4 +20,5 @@
 |Bagel.cs                  |AllTheFilling()                  |customer wants to know what filling the bagel have                                        |string showing all the filling on specific bagel              |
 |Inventory.cs              |ProductInInventory(string SKU)   |before buying product the store need to check if the product is in                        |Returns the wanted product and true, if not exist false       |
 |Inventory.cs              |AddProductToInventory(Product p) |manager wants to update the inventory                                                     |                                                              |
+|IDiscount.cs              |CheckDiscount(List<Product> pl)  |the customer wants to know if they will get any discount on the products they are buying  |double showing the new price for the product with the discount|
 
