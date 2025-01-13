@@ -40,6 +40,8 @@ namespace exercise.main
                 if (p.SKU == SKU)
                 {
                     products.Remove(p);
+                    totalCost -= p.Price;
+                    currentAmountOfProducts--;
                     return true;
                 }
             }
@@ -48,18 +50,6 @@ namespace exercise.main
 
         public double TotalCost()
         {
-            /*
-            double totalCost = 0;
-
-            foreach (Product p in products)
-            {
-                totalCost += p.Price;
-            }
-
-            return totalCost;*/
-
-
-
             return totalCost;
         }
 
@@ -70,6 +60,37 @@ namespace exercise.main
             foreach (Product p in products)
             {
                 sb.Append(p.ToString() + "\n");
+            }
+
+            return sb.ToString();
+        }
+
+        public string PrintBasket()
+        {
+            Dictionary<Product, double> ProductPrice = new Dictionary<Product, double>();
+            Dictionary<Product, int> ProductAmount = new Dictionary<Product, int>();
+
+            foreach(Product p in products)
+            {
+                /*
+                 * CODE FOR PRICES AND APPLYING DISCOUNTS
+                 * */
+
+                if (ProductAmount.ContainsKey(p))
+                {
+                    ProductAmount[p]++;
+                }
+                else
+                {
+                    ProductAmount.Add(p, 1);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach(KeyValuePair<Product, double> kp in ProductPrice)
+            {
+                sb.Append(kp.Key.Variant + "\t" + ProductAmount[kp.Key]+"\t"+ kp.Value + "\n");
             }
 
             return sb.ToString();

@@ -22,3 +22,19 @@
 |Inventory.cs              |AddProductToInventory(Product p) |manager wants to update the inventory                                                     |                                                              |
 |IDiscount.cs              |CheckDiscount(List<Product> pl)  |the customer wants to know if they will get any discount on the products they are buying  |double showing the new price for the product with the discount|
 
+
+## User stories
+
+- As a customer i want to see the prices of the products im buying
+- As a customer i want to know what products i can buy/ am buying
+- As a customer i want to know the difference variants of every product
+- As a customer i want to add products to my basket
+- As a customer i want to remove products to my basket
+- As a customer i want to see the total price of the products in my basket
+- As a customer i want to be able to add fillings to my bagels
+- As a customer i want to be able to see the total filling price before adding it to a bagel
+- As a customer i want to be able to see if a specific product is in inventory
+- As a customer i want to be able to see the different discounts 
+- As the manager i want to be able to change the capacity of the baskets of the customers
+- As the manager i want to be able to change the fillings capacity of the bagels
+- As the manager i want to be able to add new products to the inventory
