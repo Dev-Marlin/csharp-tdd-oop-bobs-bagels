@@ -15,7 +15,7 @@ namespace exercise.main
         public Basket()
         {
             products = new List<Product>();
-            Capacity = 5;
+            Capacity = 8;
             currentAmountOfProducts = 0;
             totalCost = 0;
         }
@@ -23,6 +23,7 @@ namespace exercise.main
         {
             if(currentAmountOfProducts < Capacity)
             {
+
                 products.Add(p);
                 totalCost += p.Price;
                 currentAmountOfProducts++;
@@ -56,6 +57,9 @@ namespace exercise.main
             }
 
             return totalCost;*/
+
+
+
             return totalCost;
         }
 
@@ -69,6 +73,31 @@ namespace exercise.main
             }
 
             return sb.ToString();
+        }
+
+        public Dictionary<Product, double> UpdateTotalPrice()
+        {
+            IDiscount onionBagel = new OnionBagelDiscount();
+
+            Dictionary<Product, double>  productTotalPrices = new Dictionary<Product, double>();
+
+            foreach (Product p in products.Distinct())
+            {
+                if(p.SKU == "BGLO" && !productTotalPrices.ContainsKey(p))
+                {
+                    productTotalPrices.Add(p, onionBagel.CheckDiscount(products));
+                }
+                else if (productTotalPrices.ContainsKey(p))
+                {
+                    productTotalPrices[p] += p.Price;
+                }
+                else
+                {
+                    productTotalPrices.Add(p, p.Price);
+                }
+            }
+
+            return productTotalPrices;
         }
 
         public Product GetProduct(string SKU, out bool exists)

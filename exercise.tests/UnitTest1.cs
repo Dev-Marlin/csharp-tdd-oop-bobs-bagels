@@ -101,7 +101,7 @@ public class Tests
 
         bool canAdd = true;
 
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 10; i++)
         {
             canAdd = basket.AddProduct(new Bagel(i, "Bagel", "BGLO", "Onion"));
         }
@@ -147,14 +147,15 @@ public class Tests
     public void GetDiscountTest()
     {
         Basket basket = new Basket();
+        Product p = new Bagel(0.49, "Bagel", "BGLO", "Onion");
 
-        for (int i = 1; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
-            basket.AddProduct(new Bagel(0.49, "Bagel", "BGLO", "Onion"));
+            basket.AddProduct(p);
         }
 
 
-        Assert.That(basket.TotalCost, Is.EqualTo(2.49));
+        Assert.That(basket.UpdateTotalPrice()[p], Is.EqualTo(2.49));
     }
 
     [Test]
@@ -162,14 +163,15 @@ public class Tests
     {
         Basket basket = new Basket();
 
+        Product p = new Bagel(0.49, "Bagel", "BGLO", "Onion");
 
-        for (int i = 1; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            basket.AddProduct(new Bagel(0.49, "Bagel", "BGLO", "Onion"));
+            basket.AddProduct(p);
         }
 
 
-        Assert.That(basket.TotalCost, Is.EqualTo(0.49*5.0));
+        Assert.That(basket.UpdateTotalPrice()[p], Is.EqualTo(0.49*5.0));
     }
 
 }

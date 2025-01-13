@@ -24,5 +24,15 @@ namespace exercise.main
         }
 
         public abstract override string ToString();
+
+        public override bool Equals(object? obj)
+        { 
+            return Equals(obj as Product);
+        }
+
+        private bool Equals(Product other)
+        {
+            return SKU.Equals(other.SKU);
+        }
     }
 }
