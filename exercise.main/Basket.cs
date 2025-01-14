@@ -73,7 +73,7 @@ namespace exercise.main
 
         public double TotalCost()
         {
-            return totalCost;
+            return Math.Round(totalCost* 100)/100;
         }
 
         public string AllProducts()

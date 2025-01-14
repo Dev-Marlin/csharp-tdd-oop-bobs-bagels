@@ -8,10 +8,10 @@ namespace exercise.main
 {
     public class BobsReceipts : IReceipt
     {
-        private string shopName = "~~~ Bob's Bagels ~~~";
-        private string decorator = "----------------------------";
-        private string endMessage1 = "Thank you\n";
-        private string endMessage2 = "for your order!";
+        private string shopName =    "       ~~~ Bob's Bagels ~~~";
+        private string decorator =   "  ------------------------------";
+        private string endMessage1 = "             Thank you\n";
+        private string endMessage2 = "          for your order!";
 
         DateTime dt = DateTime.Now;
 
@@ -19,7 +19,7 @@ namespace exercise.main
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(String.Format(shopName + "\n{0, 12}\n\n" + decorator +"\n{1,20}\n" + decorator +"\nTotal:\t\t{2,8}\n"+ endMessage1 + endMessage2, dt.ToString(), productList, total));
+            sb.Append(String.Format("{3,8}" + "\n\n       {0, 12}\n\n" + "{4,8}" +"\n{1,20}\n" + "{4,8}" + "\n   Total:\t\t{2,8}\n\n"+ endMessage1 + endMessage2, dt.ToString(), productList, total, shopName, decorator));
 
             return sb.ToString();
         }
