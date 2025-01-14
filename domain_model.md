@@ -35,6 +35,7 @@
 - As a customer i want to be able to see the total filling price before adding it to a bagel
 - As a customer i want to be able to see if a specific product is in inventory
 - As a customer i want to be able to see the different discounts 
+- As a customer i want to be able to receive a receipt
 - As the manager i want to be able to change the capacity of the baskets of the customers
 - As the manager i want to be able to change the fillings capacity of the bagels
 - As the manager i want to be able to add new products to the inventory
